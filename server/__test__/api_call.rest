@@ -4,8 +4,8 @@ content-type: application/json
 
 {
   "title": "Lorem ipsum",
-  "body": "Dolor sit amet, consectetur adipiscing elit",
-  "author": "Admin"
+  "description": "Dolor sit amet, consectetur adipiscing elit",
+  "authors": ["Admin", "User"]
 }
 
 ###
