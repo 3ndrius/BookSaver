@@ -1,4 +1,13 @@
 import React from 'react';
+
+import GlobalStyle from './components/themes/GlobalStyle';
+import { ThemeProvider } from 'styled-components';
+import {theme} from './components/themes/mainTheme'
+
+import { Button } from './components/Button'
+
+
+
 function App() {
   let datas = {search: "Lord of the Rings"}
   const getBooks = async() =>{
@@ -13,10 +22,14 @@ function App() {
     console.log(data)
   }
   return (
+    <>
+     <GlobalStyle />
+      <ThemeProvider theme={theme}>
     <div className="App">
-        MERN STACK WITH DOCKER
-        <button onClick={getBooks}>Get data</button>
+        test
     </div>
+     </ThemeProvider>
+     </>
   );
 }
 
