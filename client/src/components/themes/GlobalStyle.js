@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Montserrat', sans-serif;
+    font-family: 'Alata', sans-seri
     font-size: 1.6rem;
     background-color: #ffffff;
   }
