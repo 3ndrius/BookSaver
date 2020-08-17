@@ -33,16 +33,33 @@ bookController.post("/", async (req, res) => {
 
 bookController.post("/search", async (req, res) => {
   try {
-    let search = req.body.search.replace(/\s/g, '+');
-    console.log("Request", req.body.search)
-    let bookData = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
-    
-    res.status(200).json(bookData.data.items)
+    let search = req.body.search.replace(/\s/g, "+");
+    console.log("Request", req.body.search);
+    let bookData = await axios.get(
+      `https://www.googleapis.com/books/v1/volumes?q=${search}`
+    );
+
+    res.status(200).json(bookData.data.items);
   } catch (e) {
-    res.status(500).json({ 
+    res.status(500).json({
       success: false,
-      error: "Cannot find data from ext server: " + e 
-    })
+      error: "Cannot find data from ext server: " + e,
+    });
+  }
+});
+
+bookController.delete("/:id", async (req, res) => {
+  try {
+    let book = await Book.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      success: true,
+      book,
+    });
+  } catch (e) {
+    res.status(500).json({
+      success: false,
+      error: "Cannot delete data from server: " + e,
+    });
   }
 });
 
