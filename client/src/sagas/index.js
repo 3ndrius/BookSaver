@@ -1,8 +1,15 @@
-import { call, put, takeEvery, all, delay } from "redux-saga/effects";
-import { getBooksAsync, getBooksError, getBooksLoading } from "../redux/actions";
+import { call, put, takeEvery, all } from "redux-saga/effects";
+import {
+  getBooksAsync,
+  getBooksError,
+  getBooksLoading,
+  saveBookRequest,
+  saveBookLoading,
+  saveBookAsync,
+  saveBookError
+} from "../redux/actions";
 
-
-import { apiGetBooks } from "../api";
+import { apiGetBooks, apiSaveBook } from "../api";
 
 function* sagaGetBooks(action) {
   try {
@@ -20,6 +27,29 @@ function* watchGetBooks() {
 
 //################################
 
+function* sagaSaveBooks(action) {
+
+  try {
+     yield put(saveBookLoading(action.payload))
+     const savedBook = yield call(apiSaveBook, action.payload);
+     yield put(saveBookAsync(savedBook));
+
+  } catch (e) {
+    yield put(saveBookError(e.message));
+  }
+}
+
+function* watchSaveBook() {
+  yield takeEvery("SAVE_BOOK_REQUEST", sagaSaveBooks)
+}
+
+
+
 export default function* rootSaga() {
-  yield all([watchGetBooks()]);
+  yield all(
+    [
+      watchGetBooks(),
+      watchSaveBook()
+    
+  ]);
 }

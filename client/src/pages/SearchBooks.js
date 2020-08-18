@@ -6,7 +6,7 @@ import { List } from "../components/List";
 import ListItem from "../components/ListItem";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getBooksRequest } from '../redux/actions';
+import { getBooksRequest } from "../redux/actions";
 
 const Form = styled.form`
   width: 100%;
@@ -26,25 +26,23 @@ export default function SearchBooks() {
   };
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(search);
     dispatch(getBooksRequest(search));
+    setSearch("");
   };
-    
+  console.log(state);
   return (
     <>
       <Form onSubmit={handleSearch}>
-        <Input onChange={handleInputVal} />
+        <Input onChange={handleInputVal} value={search} />
         <Button large primary>
           Search books
         </Button>
       </Form>
       <List>
-        {console.log("consolelog", state.books) }
-        {state.books && state.books.map((book, index) => {
-          return (
-            <ListItem key={index} book={book.volumeInfo} />
-          )
-        })}
+    {!state.isloading ? state.books &&
+          state.books.map((book, index) => {
+            return <ListItem key={book.id} book={book.volumeInfo}/>;
+          }) : <p>Test</p>} 
       </List>
     </>
   );

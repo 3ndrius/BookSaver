@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React from "react";
 import { Button } from "./Button";
+import { useDispatch } from 'react-redux';
+import { saveBookRequest } from '../redux/actions'
 const Item = styled.li`
   padding: 5px;
 `;
@@ -35,10 +37,21 @@ const Description = styled.div`
   color: ${({ theme }) => theme.dark300};
 `;
 
-const Authors = styled.span`
+const Authors = styled.ul`
   text-transform: capitalize;
   font-weight: ${({ theme }) => theme.bold};
   margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: square;
+  padding: 0;
+  li {
+    margin: 0 16px;
+  }
+  span {
+    margin-right: 25px;
+  }
 `;
 const Wrap = styled.div`
   align-self: flex-end;
@@ -49,26 +62,36 @@ const Wrap = styled.div`
 `;
 
 export default function ListItem(props) {
-  const {title, description, authors, imageLinks, infoLink} = props.book;
+  const { title, description, authors, imageLinks, infoLink } = props.book;
+  console.log(props.book)
+  const dispatch = useDispatch();
+
+  const handleSave = (book) => {
+      dispatch(saveBookRequest(book));
+  }
   return (
-    <Item >
-      <ImageWrapper src={imageLinks?.smallThumbnail}>
+    <Item>
+      <ImageWrapper>
         <Title>{title}</Title>
-        <Description>
-          {description}
-        </Description>
-  <Authors>
-    {
-      authors?.map((author, index) =>(<p key={index}>{author}</p>))
-    }
-    </Authors>
-        <Image />
+        <Description>{description}</Description>
+        <Authors>
+          {" "}
+          <span>Authors: </span>
+          {authors?.map((author, index) => (
+            <li key={index}> {author} </li>
+          ))}
+        </Authors>
+        <Image src={imageLinks?.smallThumbnail} />
 
         <Wrap>
-          <Button large primary>
+          <Button large primary onClick={() => handleSave({title, description, authors, imageLinks, infoLink})}>
             Save book
           </Button>
-          <a src={infoLink}><Button large>View book</Button></a>
+          <a href={infoLink}>
+            <Button target="_blank" large>
+              View book
+            </Button>
+          </a>
         </Wrap>
       </ImageWrapper>
     </Item>

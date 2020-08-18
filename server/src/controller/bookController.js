@@ -18,7 +18,7 @@ bookController.get("/", async (req, res) => {
 
 bookController.post("/", async (req, res) => {
   try {
-    let book = await Book.create(req.body);
+    let book = await Book.create(req.body.book);
     res.status(201).json({
       success: true,
       book,

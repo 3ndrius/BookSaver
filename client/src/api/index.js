@@ -17,3 +17,22 @@ export const apiGetBooks = async (search) => {
     console.log("Error faild to get books", e);
   }
 };
+
+export const apiSaveBook = async (book) => {
+  console.log("api tesst", book);
+    try {
+    const request = await fetch(`http://localhost:8080/books/`, {
+      method: "POST",
+      body: JSON.stringify({
+        book: book
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const response = await request.json();
+    return response;
+  } catch (e) {
+    console.log("Error faild to get books", e);
+  }
+}

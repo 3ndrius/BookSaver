@@ -10,7 +10,7 @@ const bookSchema = new mongoose.Schema({
    authors: {
        type: [ String ]
    },
-   img: {
+   imageLinks: {
        type: { String }
    },
    linkInfo: {
