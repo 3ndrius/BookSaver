@@ -1,21 +1,29 @@
 import React from "react";
-
+import { Switch, Route } from "react-router-dom";
 import GlobalStyle from "./components/themes/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./components/themes/mainTheme";
 
-import { Button } from "./components/Button";
+import SearchBooks from "./pages/SearchBooks";
+import SavedBooks from "./pages/SavedBooks";
+import { Container } from './components/Container';
+import Header from './components/Header';
 
 const App = () => {
- 
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <div className="App">test</div>
+        <Header />
+        <Container>
+          <Switch>
+            <Route exact path="/" component={SearchBooks} />
+            <Route path="/saved" component={SavedBooks} />
+          </Switch>
+        </Container>
       </ThemeProvider>
     </>
   );
-}
+};
 
 export default App;

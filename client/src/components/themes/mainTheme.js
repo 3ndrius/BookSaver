@@ -46,9 +46,9 @@ export const theme = {
     xxxl: '7rem',
   },
   fonts: {
-    mainFont: `'Montserrat', sans-serif`,
-    subFont: `'Quicksand', sans-serif`,
-    subFont2: `'Comfortaa', cursive`,
+    mainFont: `'Merriweather', serif`,
+    subFont: `'Roboto', sans-serif`,
+    subFont2: `'Alata', sans-serif`,
     specialFont: `'Nanum Pen Script', cursive`,
     specialFont2: `'Nova Mono', monospace`,
   },

@@ -1,10 +1,12 @@
 
 const initialState = {
+    books: [],
+    isloading: false,
+    errors: false
+}
+
+const rootReducer = (state = initialState, action) => {
 
 }
 
-const reducer = (state=initialState, action) => {
-
-}
-
-export default reducer;
+export default rootReducer;

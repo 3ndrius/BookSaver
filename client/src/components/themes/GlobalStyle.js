@@ -26,13 +26,15 @@ const GlobalStyle = createGlobalStyle`
   }
   
   html {
-    font-size: 62.5%;
+    font-size: 65.5%;
   }
   body {
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Alata', sans-seri
+    font-family:'Roboto', sans-serif;
     font-size: 1.6rem;
     background-color: #ffffff;
+  }
+  h1{ 
+    font-family: 'Merriweather', serif;
   }
 `;
 
