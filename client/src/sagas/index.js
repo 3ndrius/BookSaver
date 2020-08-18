@@ -3,13 +3,14 @@ import {
   getBooksAsync,
   getBooksError,
   getBooksLoading,
-  saveBookRequest,
-  saveBookLoading,
   saveBookAsync,
-  saveBookError
+  saveBookError,
+  showBookLoading,
+  showBookError,
+  showBookAsync,
 } from "../redux/actions";
 
-import { apiGetBooks, apiSaveBook } from "../api";
+import { apiGetBooks, apiSaveBook, apiShowBooks } from "../api";
 
 function* sagaGetBooks(action) {
   try {
@@ -28,28 +29,35 @@ function* watchGetBooks() {
 //################################
 
 function* sagaSaveBooks(action) {
-
   try {
-     yield put(saveBookLoading(action.payload))
-     const savedBook = yield call(apiSaveBook, action.payload);
-     yield put(saveBookAsync(savedBook));
-
+    const savedBook = yield call(apiSaveBook, action.payload);
+    yield put(saveBookAsync(savedBook));
   } catch (e) {
     yield put(saveBookError(e.message));
   }
 }
 
 function* watchSaveBook() {
-  yield takeEvery("SAVE_BOOK_REQUEST", sagaSaveBooks)
+  yield takeEvery("SAVE_BOOK_USER_REQUEST", sagaSaveBooks);
 }
 
+//###########
 
+function* sagaShowBooks(action) {
+  try {
+    yield put(showBookLoading());
+    const showedBook = yield call(apiShowBooks);
+    yield put(showBookAsync(showedBook));
+  } catch (e) {
+    yield put(showBookError(e.message));
+  }
+}
+// watcher saga
+
+function* watchShowBooks() {
+  yield takeEvery("SHOW_BOOKS_USER_REQUEST", sagaShowBooks);
+}
 
 export default function* rootSaga() {
-  yield all(
-    [
-      watchGetBooks(),
-      watchSaveBook()
-    
-  ]);
+  yield all([watchGetBooks(), watchShowBooks(), watchSaveBook()]);
 }

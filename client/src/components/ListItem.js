@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import React from "react";
 import { Button } from "./Button";
-import { useDispatch } from 'react-redux';
-import { saveBookRequest } from '../redux/actions'
+import { useDispatch } from "react-redux";
+import { saveBookRequest } from "../redux/actions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Item = styled.li`
   padding: 5px;
 `;
@@ -19,11 +21,6 @@ const Image = styled.img`
   margin: 20px 0;
   width: 200px;
 `;
-
-const Content = styled.div`
-  padding: 30px 20px;
-`;
-
 const Title = styled.h1`
   margin-bottom: 20px;
   font-size: ${({ theme }) => theme.fontSize.lg};
@@ -63,12 +60,18 @@ const Wrap = styled.div`
 
 export default function ListItem(props) {
   const { title, description, authors, imageLinks, infoLink } = props.book;
-  console.log(props.book)
   const dispatch = useDispatch();
 
+  const notify = () => {
+    toast.success("Success Notification !", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  };
+
   const handleSave = (book) => {
-      dispatch(saveBookRequest(book));
-  }
+    dispatch(saveBookRequest(book));
+    notify();
+  };
   return (
     <Item>
       <ImageWrapper>
@@ -84,9 +87,16 @@ export default function ListItem(props) {
         <Image src={imageLinks?.smallThumbnail} />
 
         <Wrap>
-          <Button large primary onClick={() => handleSave({title, description, authors, imageLinks, infoLink})}>
+          <Button
+            large
+            primary
+            onClick={() => {
+               handleSave({title, authors, description, imageLinks, infoLink})
+            }}
+          >
             Save book
           </Button>
+          <ToastContainer />
           <a href={infoLink}>
             <Button target="_blank" large>
               View book

@@ -4,8 +4,9 @@ import {
   GET_BOOKS_LOADING,
   SAVE_BOOK_ASYNC,
   SAVE_BOOK_ERROR,
-  SAVE_BOOK_LOADING,
-  SAVE_BOOK_REQUEST
+  SHOW_BOOKS_LOADING,
+  SHOW_BOOKS_ERROR,
+  SHOW_BOOKS_ASYNC
 } from "../const/index";
 
 const initialState = {
@@ -21,7 +22,6 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_BOOKS_ASYNC:
-      console.log(action, "action");
       return {
         ...state,
         isloading: false,
@@ -42,9 +42,30 @@ const rootReducer = (state = initialState, action) => {
       case SAVE_BOOK_ASYNC: 
         return {
             ...state,
-            savedBooks: [...state.savedBooks, action.payload]
+            savedBooks: [...state.savedBooks, action.payload],
         }
-
+      case SAVE_BOOK_ERROR:
+        return {
+          ...state,
+          errors: {msg: action.payload, status: true}
+        }
+      case SHOW_BOOKS_ASYNC:
+        return {
+          ...state,
+          savedBooks: [...state.savedBooks, action.payload],
+          isloading: false
+        }
+      case SHOW_BOOKS_LOADING:
+        return {
+          ...state,
+          isloading: true
+        }
+      case SHOW_BOOKS_ERROR: 
+        return {
+          ...state,
+          errors: {msg: action.payload, status:true},
+          isloading: false
+        }
     default:
       return state;
   }

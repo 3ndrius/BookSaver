@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { List } from "../components/List";
 import ListItem from "../components/ListItem";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getBooksRequest } from "../redux/actions";
 
 const Form = styled.form`
@@ -29,7 +28,6 @@ export default function SearchBooks() {
     dispatch(getBooksRequest(search));
     setSearch("");
   };
-  console.log(state);
   return (
     <>
       <Form onSubmit={handleSearch}>
@@ -39,10 +37,14 @@ export default function SearchBooks() {
         </Button>
       </Form>
       <List>
-    {!state.isloading ? state.books &&
+        {!state.isloading ? (
+          state.books &&
           state.books.map((book, index) => {
-            return <ListItem key={book.id} book={book.volumeInfo}/>;
-          }) : <p>Test</p>} 
+            return <ListItem key={book.id} book={book.volumeInfo} />;
+          })
+        ) : (
+          <p>Test</p>
+        )}
       </List>
     </>
   );
