@@ -4,6 +4,9 @@ import { Button } from "../components/Button";
 import styled from "styled-components";
 import { List } from "../components/List";
 import ListItem from "../components/ListItem";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getBooksRequest } from '../redux/actions';
 
 const Form = styled.form`
   width: 100%;
@@ -15,13 +18,18 @@ const Form = styled.form`
 export default function SearchBooks() {
   const [search, setSearch] = React.useState("");
 
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+
   const handleInputVal = (e) => {
     setSearch(e.target.value);
   };
   const handleSearch = (e) => {
     e.preventDefault();
     console.log(search);
+    dispatch(getBooksRequest(search));
   };
+    
   return (
     <>
       <Form onSubmit={handleSearch}>
@@ -31,9 +39,12 @@ export default function SearchBooks() {
         </Button>
       </Form>
       <List>
-          <ListItem />
-          <ListItem />
-          <ListItem />
+        {console.log("consolelog", state.books) }
+        {state.books && state.books.map((book, index) => {
+          return (
+            <ListItem key={index} book={book.volumeInfo} />
+          )
+        })}
       </List>
     </>
   );

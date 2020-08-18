@@ -11,6 +11,11 @@ content-type: application/json
 ###
 
 GET http://localhost:8080/books
+content-type: application/json
+
+{
+  
+}
 ###
 
 PATCH  http://localhost:8080/books/5f391b1ab7e18b0082d7da26

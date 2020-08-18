@@ -49,25 +49,26 @@ const Wrap = styled.div`
 `;
 
 export default function ListItem(props) {
+  const {title, description, authors, imageLinks, infoLink} = props.book;
   return (
-    <Item>
-      <ImageWrapper>
-        <Title>Some title some just title</Title>
+    <Item >
+      <ImageWrapper src={imageLinks?.smallThumbnail}>
+        <Title>{title}</Title>
         <Description>
-          Some lorem Adipisicing fugiat magna ipsum aliqua sit. Adipisicing
-          laborum sint laborum et ut id sit qui quis nostrud ut magna enim ad.
-          Amet aliqua culpa reprehenderit Lorem nisi sunt ea sint dolor
-          adipisicing ea esse veniam irure. Irure adipisicing ut sit duis
-          voluptate nostrud magna ut voluptate quis.{" "}
+          {description}
         </Description>
-        <Authors>By: John Doe, Mark Twait</Authors>
+  <Authors>
+    {
+      authors?.map((author, index) =>(<p key={index}>{author}</p>))
+    }
+    </Authors>
         <Image />
 
         <Wrap>
           <Button large primary>
             Save book
           </Button>
-          <Button large>View book</Button>
+          <a src={infoLink}><Button large>View book</Button></a>
         </Wrap>
       </ImageWrapper>
     </Item>
