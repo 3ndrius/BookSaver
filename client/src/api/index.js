@@ -14,9 +14,9 @@ export const apiGetBooks = async (search) => {
     const response = await request.json();
     return response;
   } catch (e) {
-       toast.error("Server Error occurred!", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-     })
+    toast.error("Server Error occurred!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
     console.log("Error faild to get books", e);
   }
 };
@@ -33,9 +33,9 @@ export const apiSaveBook = async (book) => {
       },
     });
     const response = await request.json();
-     toast.success("Successfully saved book !!", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-     })
+    toast.success("Successfully saved book !!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
     return response;
   } catch (e) {
     console.log("Error faild to get books", e);
@@ -59,18 +59,28 @@ export const apiShowBooks = async () => {
   }
 };
 export const apiDeleteBook = async (id) => {
-  console.log("Id from api", id);
-  try{
+  try {
     const request = await fetch(`http://localhost:8080/books/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
     });
     const response = await request.json();
     toast.success("Successfully saved book !!", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-     })
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
     return response;
   } catch (e) {
     console.log("Server error: " + e);
-    
   }
-}
+};
+
+
+// export const api = async () => {
+//   try {
+//     const request  = await fetch(url, {
+//       method: options.metod,
+//     })
+//   } catch (e) {
+  
+//   }
+
+// }

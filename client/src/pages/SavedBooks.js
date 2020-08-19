@@ -32,7 +32,7 @@ const Description = styled.div`
   display: flex;
   margin-bottom: 15px;
   width: 100%;
-  height:100%;
+  height: 100%;
   font-family: ${({ theme }) => theme.fonts.subFont2};
   color: ${({ theme }) => theme.dark300};
 `;
@@ -70,9 +70,8 @@ export default function SavedBooks() {
   const [isloading, setLoad] = React.useState(true);
 
   const handleDelete = (id) => {
-      sdispatch(deleteBookRequest(id));
-      console.log("Test handle delete");
-  }
+    sdispatch(deleteBookRequest(id));
+  };
 
   setTimeout(() => {
     setLoad(false);
@@ -88,25 +87,32 @@ export default function SavedBooks() {
             <Item key={book._id}>
               <ImageWrapper>
                 <Title>{book.title}</Title>
-                <Description>{book.description && book.description.substring(0, 1200) + " ..."}</Description>
+                <Description>
+                  {book.description &&
+                    book.description.substring(0, 1200) + " ..."}
+                </Description>
                 <Authors>
-          
-          <span>Authors: </span>
-          {book.authors?.map((author, index) => (
-            <li key={index}> {author} </li>
-          ))}
-        </Authors>
-                <Image src={book.imageLinks?.smallThumbnail}/>
+                  <span>Authors: </span>
+                  {book.authors?.map((author, index) => (
+                    <li key={index}> {author} </li>
+                  ))}
+                </Authors>
+                <Image src={book.imageLinks?.smallThumbnail} />
 
                 <Wrap>
-                  <a >
-                    <Button target="_blank" large >
+                  <a>
+                    <Button target="_blank" large>
                       View book
                     </Button>
                   </a>
-                  <Button target="_blank" primary large onClick={() => handleDelete(book._id)}>
-                      Delete book
-                    </Button>
+                  <Button
+                    target="_blank"
+                    primary
+                    large
+                    onClick={() => handleDelete(book._id)}
+                  >
+                    Delete book
+                  </Button>
                 </Wrap>
               </ImageWrapper>
             </Item>
