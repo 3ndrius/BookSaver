@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { showBookRequest } from "../redux/actions";
+import { showBookRequest, deleteBookRequest } from "../redux/actions";
 import { List } from "../components/List";
 import styled from "styled-components";
 import { Button } from "../components/Button";
@@ -30,9 +30,9 @@ const Title = styled.h1`
 
 const Description = styled.div`
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   width: 100%;
-  height: 200px;
+  height:100%;
   font-family: ${({ theme }) => theme.fonts.subFont2};
   color: ${({ theme }) => theme.dark300};
 `;
@@ -63,25 +63,32 @@ const Wrap = styled.div`
 
 export default function SavedBooks() {
   const dispatch = useDispatch();
+  const sdispatch = useDispatch();
+
   const state = useSelector((state) => state);
-  console.log("state", state.savedBooks.books);
+  console.log("state", state.savedBooks);
   const [isloading, setLoad] = React.useState(true);
+
+  const handleDelete = (id) => {
+      sdispatch(deleteBookRequest(id));
+      console.log("Test handle delete");
+  }
 
   setTimeout(() => {
     setLoad(false);
   }, 2000);
   React.useEffect(() => {
     dispatch(showBookRequest());
-  }, [dispatch, isloading]);
+  }, [dispatch, isloading, sdispatch]);
   return (
     <List>
-      {state && state.savedBooks.books ? (
-        state.savedBooks.books.map((book) => {
+      {state && state.savedBooks ? (
+        state.savedBooks.map((book) => {
           return (
             <Item key={book._id}>
               <ImageWrapper>
                 <Title>{book.title}</Title>
-                <Description>{book.description}</Description>
+                <Description>{book.description && book.description.substring(0, 1200) + " ..."}</Description>
                 <Authors>
           
           <span>Authors: </span>
@@ -97,6 +104,9 @@ export default function SavedBooks() {
                       View book
                     </Button>
                   </a>
+                  <Button target="_blank" primary large onClick={() => handleDelete(book._id)}>
+                      Delete book
+                    </Button>
                 </Wrap>
               </ImageWrapper>
             </Item>

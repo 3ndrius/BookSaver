@@ -14,3 +14,7 @@ export const saveBookRequest = book => ({type: types.SAVE_BOOK_USER_REQUEST, pay
 export const saveBookAsync = book => ({type: types.SAVE_BOOK_ASYNC, payload: book});
 export const saveBookError = msg => ({type: types.SAVE_BOOK_ERROR , payload: msg});
 
+export const deleteBookRequest = id => ({type: types.DELETE_BOOK_USER_REQUEST, payload: id});
+export const deleteBookAsync = id => ({type: types.DELETE_BOOK_ASYNC, payload: id});
+export const deleteBookError = msg => ({type: types.DELETE_BOOK_ERROR, payload: msg});
+

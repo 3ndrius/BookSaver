@@ -6,7 +6,10 @@ import {
   SAVE_BOOK_ERROR,
   SHOW_BOOKS_ERROR,
   SHOW_BOOKS_ASYNC,
-  SHOW_BOOKS_USER_REQUEST
+  SHOW_BOOKS_USER_REQUEST,
+  DELETE_BOOK_USER_REQUEST,
+  DELETE_BOOK_ERROR,
+  DELETE_BOOK_ASYNC
 } from "../const/index";
 
 const initialState = {
@@ -42,7 +45,6 @@ const rootReducer = (state = initialState, action) => {
       case SAVE_BOOK_ASYNC: 
         return {
             ...state,
-            savedBooks: [...state.savedBooks, action.payload],
         }
       case SAVE_BOOK_ERROR:
         return {
@@ -52,7 +54,7 @@ const rootReducer = (state = initialState, action) => {
       case SHOW_BOOKS_ASYNC:
         return {
           ...state,
-          savedBooks: action.payload,
+          savedBooks: action.payload.books,
           isloading: false
         }
       case SHOW_BOOKS_USER_REQUEST:
@@ -65,6 +67,23 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           errors: {msg: action.payload, status:true},
           isloading: false
+        }
+      case DELETE_BOOK_USER_REQUEST: 
+        return {
+          ...state,
+          isloading: true
+        }
+      case DELETE_BOOK_ASYNC: 
+        const sbooks = state.savedBooks.filter(book => book._id !== action.payload.book._id);
+        return {
+          ...state,
+          savedBooks: sbooks
+        }
+      case DELETE_BOOK_ERROR: 
+        return {
+          ...state,
+          isloading: false,
+          errors: {msg: action.payload, status: true}
         }
     default:
       return state;

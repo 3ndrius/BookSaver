@@ -53,8 +53,24 @@ export const apiShowBooks = async () => {
     return response;
   } catch (e) {
     console.log("Server error" + e);
-       toast.error("Server Error occurred!", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-     })
+    toast.error("Server Error occurred!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   }
 };
+export const apiDeleteBook = async (id) => {
+  console.log("Id from api", id);
+  try{
+    const request = await fetch(`http://localhost:8080/books/${id}`, {
+      method: "DELETE"
+    });
+    const response = await request.json();
+    toast.success("Successfully saved book !!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+     })
+    return response;
+  } catch (e) {
+    console.log("Server error: " + e);
+    
+  }
+}
