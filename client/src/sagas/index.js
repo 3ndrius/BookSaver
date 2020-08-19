@@ -12,7 +12,6 @@ import { apiGetBooks, apiSaveBook, apiShowBooks } from "../api";
 
 function* sagaGetBooks(action) {
   const books = yield call(apiGetBooks, action.payload);
-  console.log(books, "dfdf");
   if (books) {
     yield put(getBooksAsync(books));
   } else {
@@ -43,6 +42,7 @@ function* watchSaveBook() {
 
 function* sagaShowBooks(action) {
   const showedBook = yield call(apiShowBooks);
+  console.log("saga", showedBook)
   if (showedBook) {
     yield put(showBookAsync(showedBook));
   } else {

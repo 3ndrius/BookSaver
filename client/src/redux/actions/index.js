@@ -6,7 +6,7 @@ export const getBooksAsync = books => ({type: types.GET_BOOKS_ASYNC, payload: bo
 export const getBooksError = msg => ({type: types.GET_BOOKS_ERROR, payload: msg});
 
 export const showBookRequest = () => ({type: types.SHOW_BOOKS_USER_REQUEST});
-export const showBookAsync = () => ({type: types.SHOW_BOOKS_ASYNC});
+export const showBookAsync = (books) => ({type: types.SHOW_BOOKS_ASYNC, payload: books});
 export const showBookError = msg => ({type: types.SHOW_BOOKS_ERROR, payload: msg});
 
 
