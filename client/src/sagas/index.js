@@ -42,7 +42,6 @@ function* watchSaveBook() {
 
 function* sagaShowBooks(action) {
   const showedBook = yield call(apiShowBooks);
-  console.log("saga", showedBook)
   if (showedBook) {
     yield put(showBookAsync(showedBook));
   } else {

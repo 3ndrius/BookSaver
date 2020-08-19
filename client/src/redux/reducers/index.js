@@ -50,7 +50,6 @@ const rootReducer = (state = initialState, action) => {
           errors: {msg: action.payload, status: true}
         }
       case SHOW_BOOKS_ASYNC:
-        console.log("show book async", action.payload)
         return {
           ...state,
           savedBooks: action.payload,
