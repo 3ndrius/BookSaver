@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "./Button";
 import { useDispatch } from "react-redux";
 import { saveBookRequest } from "../redux/actions";
-import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 const Item = styled.li`
   padding: 5px;
@@ -62,16 +62,10 @@ export default function ListItem(props) {
   const { title, description, authors, imageLinks, infoLink } = props.book;
   const dispatch = useDispatch();
 
-  const notify = () => {
-    toast.success("Success Notification !", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-    });
-  };
-
   const handleSave = (book) => {
     dispatch(saveBookRequest(book));
-    notify();
   };
+
   return (
     <Item>
       <ImageWrapper>
@@ -91,12 +85,12 @@ export default function ListItem(props) {
             large
             primary
             onClick={() => {
-               handleSave({title, authors, description, imageLinks, infoLink})
+              handleSave({ title, authors, description, imageLinks, infoLink });
             }}
           >
             Save book
           </Button>
-          <ToastContainer />
+
           <a href={infoLink}>
             <Button target="_blank" large>
               View book

@@ -2,10 +2,8 @@ import { call, put, takeEvery, all } from "redux-saga/effects";
 import {
   getBooksAsync,
   getBooksError,
-  getBooksLoading,
   saveBookAsync,
   saveBookError,
-  showBookLoading,
   showBookError,
   showBookAsync,
 } from "../redux/actions";
@@ -13,12 +11,12 @@ import {
 import { apiGetBooks, apiSaveBook, apiShowBooks } from "../api";
 
 function* sagaGetBooks(action) {
-  try {
-    yield put(getBooksLoading(action.payload));
-    const books = yield call(apiGetBooks, action.payload);
+  const books = yield call(apiGetBooks, action.payload);
+  console.log(books, "dfdf");
+  if (books) {
     yield put(getBooksAsync(books));
-  } catch (e) {
-    yield put(getBooksError(e.message));
+  } else {
+    yield put(getBooksError("Server error sga"));
   }
 }
 // watcher saga
@@ -29,11 +27,11 @@ function* watchGetBooks() {
 //################################
 
 function* sagaSaveBooks(action) {
-  try {
-    const savedBook = yield call(apiSaveBook, action.payload);
+  const savedBook = yield call(apiSaveBook, action.payload);
+  if (savedBook) {
     yield put(saveBookAsync(savedBook));
-  } catch (e) {
-    yield put(saveBookError(e.message));
+  } else {
+    yield put(saveBookError("Error else eroor!!!"));
   }
 }
 
@@ -44,12 +42,11 @@ function* watchSaveBook() {
 //###########
 
 function* sagaShowBooks(action) {
-  try {
-    yield put(showBookLoading());
-    const showedBook = yield call(apiShowBooks);
+  const showedBook = yield call(apiShowBooks);
+  if (showedBook) {
     yield put(showBookAsync(showedBook));
-  } catch (e) {
-    yield put(showBookError(e.message));
+  } else {
+    yield put(showBookError("Server error sga!!"));
   }
 }
 // watcher saga

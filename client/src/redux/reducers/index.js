@@ -1,12 +1,12 @@
 import {
   GET_BOOKS_ASYNC,
   GET_BOOKS_ERROR,
-  GET_BOOKS_LOADING,
+  GET_BOOKS_USER_REQUEST,
   SAVE_BOOK_ASYNC,
   SAVE_BOOK_ERROR,
-  SHOW_BOOKS_LOADING,
   SHOW_BOOKS_ERROR,
-  SHOW_BOOKS_ASYNC
+  SHOW_BOOKS_ASYNC,
+  SHOW_BOOKS_USER_REQUEST
 } from "../const/index";
 
 const initialState = {
@@ -27,10 +27,10 @@ const rootReducer = (state = initialState, action) => {
         isloading: false,
         books: action.payload,
       };
-    case GET_BOOKS_LOADING:
+    case GET_BOOKS_USER_REQUEST:
       return {
         ...state,
-        isloading: action.payload,
+        isloading: true,
       };
 
     case GET_BOOKS_ERROR:
@@ -52,10 +52,10 @@ const rootReducer = (state = initialState, action) => {
       case SHOW_BOOKS_ASYNC:
         return {
           ...state,
-          savedBooks: [...state.savedBooks, action.payload],
+          savedBooks: action.payload,
           isloading: false
         }
-      case SHOW_BOOKS_LOADING:
+      case SHOW_BOOKS_USER_REQUEST:
         return {
           ...state,
           isloading: true

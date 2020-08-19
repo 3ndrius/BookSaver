@@ -1,11 +1,11 @@
-
+import { toast } from "react-toastify";
 
 export const apiGetBooks = async (search) => {
   try {
     const request = await fetch(`http://localhost:8080/books/search`, {
       method: "POST",
       body: JSON.stringify({
-        search: search
+        search: search,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -14,27 +14,37 @@ export const apiGetBooks = async (search) => {
     const response = await request.json();
     return response;
   } catch (e) {
+       toast.error("Server Error occurred!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+     })
     console.log("Error faild to get books", e);
   }
 };
 
 export const apiSaveBook = async (book) => {
-    try {
+  try {
     const request = await fetch(`http://localhost:8080/books/`, {
       method: "POST",
       body: JSON.stringify({
-        book: book
+        book: book,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
     const response = await request.json();
+     toast.success("Successfully saved book !!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+     })
     return response;
   } catch (e) {
     console.log("Error faild to get books", e);
+
+    toast.error("Server Error occurred!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   }
-}
+};
 
 export const apiShowBooks = async () => {
   try {
@@ -43,5 +53,8 @@ export const apiShowBooks = async () => {
     return response;
   } catch (e) {
     console.log("Server error" + e);
+       toast.error("Server Error occurred!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+     })
   }
-}
+};

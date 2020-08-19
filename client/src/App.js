@@ -8,7 +8,7 @@ import SearchBooks from "./pages/SearchBooks";
 import SavedBooks from "./pages/SavedBooks";
 import { Container } from './components/Container';
 import Header from './components/Header';
-
+import {ToastContainer} from 'react-toastify'
 const App = () => {
   return (
     <>
@@ -20,6 +20,7 @@ const App = () => {
             <Route exact path="/" component={SearchBooks} />
             <Route path="/saved" component={SavedBooks} />
           </Switch>
+           <ToastContainer />
         </Container>
       </ThemeProvider>
     </>
