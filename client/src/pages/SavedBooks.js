@@ -5,6 +5,7 @@ import { List } from "../components/List";
 import styled from "styled-components";
 import { Button } from "../components/Button";
 import Skeleton from "react-loading-skeleton";
+import { motion } from "framer-motion"
 
 const Item = styled.li`
   padding: 5px;
@@ -69,9 +70,13 @@ export default function SavedBooks() {
 
   React.useEffect(() => {
     dispatch(showBookRequest());
-  }, [dispatch]);
+  }, [dispatch])
 
   return (
+    <motion.div  initial={{ x: '-10%', opacity: 0 }}
+       animate={{ x: 0, opacity: 1 }}
+      exit={{ x: '30%', opacity: 0 }}
+      transition={{delay: 0.3, ease: "easeOut", duration:1 }}>
     <List>
       {state && state.savedBooks && state.savedBooks.length !== 0 ?
         state.savedBooks.map((book) => {
@@ -119,5 +124,6 @@ export default function SavedBooks() {
         }) : <p>No books</p>
       }
     </List>
+    </motion.div>
   );
 }

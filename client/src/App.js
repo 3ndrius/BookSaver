@@ -6,7 +6,7 @@ import { theme } from "./components/themes/mainTheme";
 import { Container } from './components/Container';
 import Header from './components/Header';
 import {ToastContainer} from 'react-toastify'
-
+import { AnimatePresence } from "framer-motion";
 const SavedBooks = (lazy(() => (import('./pages/SavedBooks'))));
 const SearchBooks = (lazy(() => (import('./pages/SearchBooks'))));
 
@@ -24,6 +24,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
       <GlobalStyle dark={darkMode}/>
         <Header handleDarkMode={handleDarkMode} darkMode={darkMode}/>
+        <AnimatePresence>
         <Container>
           <Switch>
             <Route exact path="/" component={SearchBooks} />
@@ -31,6 +32,7 @@ const App = () => {
           </Switch>
            <ToastContainer />
         </Container>
+        </AnimatePresence>
       </ThemeProvider>
       </Suspense>
     </>
