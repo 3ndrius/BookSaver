@@ -62,7 +62,6 @@ const Wrap = styled.div`
 export default function ListItem(props) {
   const { title, description, authors, imageLinks, infoLink } = props.book;
   const dispatch = useDispatch();
-  console.log(props)
   const isloading = props.isloading;
   const handleSave = (book) => {
     dispatch(saveBookRequest(book));

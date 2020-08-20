@@ -44,6 +44,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => (props.dark ? ({theme}) => theme.white100 : ({theme}) => theme.dark200)};
   }
 
+
   @media (max-width: 480px) {
     html{
       font-size: 45%;

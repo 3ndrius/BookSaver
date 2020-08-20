@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { Button } from "../components/Button";
 import Skeleton from "react-loading-skeleton";
 import { motion } from "framer-motion";
-import ListItemSkeleton from "../components/ListItemSkeleton";
 
 const Item = styled.li`
   padding: 5px;
@@ -78,13 +77,13 @@ export default function SavedBooks() {
       {state && state.savedBooks && state.savedBooks.length !== 0 ? (
         state.savedBooks.map((book) => {
           return (
-            <motion.div
+            <motion.div key={book._id}
               initial={{ y: "-5%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ x: "30%", opacity: 0 }}
               transition={{ ease: "easeOut", duration: 1.5 }}
             >
-              <Item key={book._id}>
+                <Item >
                 <ImageWrapper>
                   <Title>
                     {state.isloading ? <Skeleton count={2} /> : book.title}
@@ -145,7 +144,7 @@ export default function SavedBooks() {
           );
         })
       ) : (
-        <ListItemSkeleton />
+        <p>No books</p>
       )}
     </List>
   );
