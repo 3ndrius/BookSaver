@@ -90,8 +90,8 @@ export default function ListItem(props) {
             Save book
           </Button>
 
-          <a href={infoLink}>
-            <Button target="_blank" large>
+          <a href={infoLink} target="_blank" rel="noopener noreferrer" >
+            <Button  large>
               View book
             </Button>
           </a>

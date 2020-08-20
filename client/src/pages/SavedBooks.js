@@ -63,18 +63,17 @@ const Wrap = styled.div`
 export default function SavedBooks() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-console.log(state.isloading)
   const handleDelete = (id) => {
     dispatch(deleteBookRequest(id));
   };
 
   React.useEffect(() => {
     dispatch(showBookRequest());
-  }, []);
+  }, [dispatch]);
 
   return (
     <List>
-      {state && state.savedBooks && state.savedBooks.length != 0 ?
+      {state && state.savedBooks && state.savedBooks.length !== 0 ?
         state.savedBooks.map((book) => {
           return (
             <Item key={book._id}>
@@ -99,7 +98,8 @@ console.log(state.isloading)
                 {state.isloading ? <Skeleton width={200} height={250} /> :<Image src={book.imageLinks?.smallThumbnail} />}
 
                 <Wrap>
-                 {state.isloading ? <Skeleton width={130} height={45} /> : <a>
+                 {state.isloading ? <Skeleton width={130} height={45} /> : 
+                 <a href={book.infoLink} rel="noopener noreferrer" >
                     <Button target="_blank" large>
                       View book
                     </Button>

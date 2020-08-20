@@ -13,7 +13,7 @@ const bookSchema = new mongoose.Schema({
    imageLinks: {
        type: { String }
    },
-   linkInfo: {
+   infoLink: {
        type: String
    }
 });

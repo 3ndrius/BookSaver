@@ -13,12 +13,10 @@ const SearchBooks = (lazy(() => (import('./pages/SearchBooks'))));
 const LoadingMessage = () => (
   "I'm loading..."
 )
-
 const App = () => {
   const [darkMode, setDarkMode] = React.useState(false)
   const handleDarkMode = () => {
     setDarkMode(!darkMode);
-    console.log("click")
   }
   return (
     <>

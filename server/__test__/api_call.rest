@@ -5,7 +5,8 @@ content-type: application/json
 {
   "title": "Lorem ipsum",
   "description": "Dolor sit amet, consectetur adipiscing elit",
-  "authors": ["Admin", "User"]
+  "authors": ["Admin", "User"],
+  "imageLinks": {"smallThumbnail": "Jhfdjfjdsfjds", "thumbnail": "sdfhjsdjf"}
 }
 
 ###
