@@ -76,7 +76,7 @@ export default function SavedBooks() {
     <motion.div  initial={{ x: '-10%', opacity: 0 }}
        animate={{ x: 0, opacity: 1 }}
       exit={{ x: '30%', opacity: 0 }}
-      transition={{delay: 0.3, ease: "easeOut", duration:1 }}>
+      transition={{ ease: "easeOut", duration:1.5 }}>
     <List>
       {state && state.savedBooks && state.savedBooks.length !== 0 ?
         state.savedBooks.map((book) => {
