@@ -31,10 +31,14 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family:'Roboto', sans-serif;
     font-size: 1.6rem;
-    background-color: #ffffff;
+    background: ${(props) => (props.dark ? ({theme}) => theme.dark100 : ({theme}) => theme.white)};
   }
   h1{ 
     font-family: 'Merriweather', serif;
+    color: ${(props) => (props.dark ? ({theme}) => theme.white100 : ({theme}) => theme.dark200)};
+  }
+  p{
+    color: ${(props) => (props.dark ? ({theme}) => theme.white100T : ({theme}) => theme.dark300)};
   }
 `;
 

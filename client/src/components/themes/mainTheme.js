@@ -64,6 +64,9 @@ export const theme = {
     level9: "900",
     level10: "1000",
   },
+  darkMode: { 
+    background: 'brown'
+  },
   mq: Object.keys(breakpoints).reduce((acc, breakpoint) => {
     acc[breakpoint] = `@media (min-width: ${breakpoints[breakpoint]}px)`;
     return acc;

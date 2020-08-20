@@ -28,13 +28,12 @@ const Title = styled.h1`
   font-weight: ${({ theme }) => theme.semiBold};
 `;
 
-const Description = styled.div`
+const Description = styled.p`
   display: flex;
   margin-bottom: 15px;
   width: 100%;
   height: 100%;
   font-family: ${({ theme }) => theme.fonts.subFont2};
-  color: ${({ theme }) => theme.dark300};
 `;
 
 const Authors = styled.ul`

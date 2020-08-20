@@ -7,8 +7,9 @@ import { Button } from "./Button";
 const HeaderContainer = styled.header`
   width: 100%;
   height: 100px;
-  color: white;
-  background: ${({ theme }) => theme.dark};
+  color: ${(props) => (props.dark ? ({theme}) => theme.white100 : ({theme}) => theme.dark200)};
+  background: ${(props) => (props.dark ? ({theme}) => theme.dark50 : ({theme}) => theme.white100)};
+  
 `;
 const NavBar = styled.div`
   display: flex;
@@ -23,10 +24,8 @@ const Nav = styled.ul`
   align-items: center;
 `;
 const Item = styled.li`
-  color: white;
-
   a {
-    color: ${({ theme }) => theme.white};
+   color: ${({theme}) => theme.gray100};
     font-size: 15px;
     text-decoration: none;
     padding: 0 5px;
@@ -37,20 +36,21 @@ const Logo = styled.h1`
   font-size: ${({ theme }) => theme.l};
 `;
 
-export default function Header() {
+export default function Header(props) {
+
   return (
-    <HeaderContainer>
+    <HeaderContainer dark={props.darkMode}>
       <Container>
         <NavBar>
           <Logo>Book Diary</Logo>
           <Nav>
             <Item>
-              <Link to={"/"}>Search</Link>
+              <Link  to={"/"}>Search</Link>
             </Item>
             <Item>
               <Link to={"/saved"}>Saved</Link>
             </Item>
-            <Button>Dark mode</Button>
+            <Button onClick={props.handleDarkMode}>Dark mode</Button>
           </Nav>
         </NavBar>
       </Container>

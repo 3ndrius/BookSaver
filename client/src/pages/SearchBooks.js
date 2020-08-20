@@ -37,10 +37,13 @@ export default function SearchBooks() {
         </Button>
       </Form>
       <List>
-        { state.isloading ? <ListItemSkeleton /> :
+        { 
           state.books &&
           state.books.map((book, index) => {
-            return <ListItem key={book.id} book={book.volumeInfo} isloading={state.isloading} />;
+            return(
+            state.isloading ? <ListItemSkeleton key={index}/> :
+             <ListItem key={book.id} book={book.volumeInfo} isloading={state.isloading} /> 
+            )
           })
 
           
