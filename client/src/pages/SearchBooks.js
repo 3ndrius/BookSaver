@@ -31,18 +31,20 @@ export default function SearchBooks() {
     setSearch("");
   };
   return (
+    <>
     <motion.div
-      initial={{ x: "10%", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
+      initial={{ y: "-10%", opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
       exit={{ x: "30%", opacity: 1 }}
       transition={{ ease: "easeOut", duration: 1 }}
     >
-      <Form onSubmit={handleSearch}>
+    <Form onSubmit={handleSearch}>
         <Input onChange={handleInputVal} value={search} />
         <Button large primary>
           Search books
         </Button>
       </Form>
+        </motion.div>
       <List>
         {state.books &&
           state.books.map((book, index) => {
@@ -57,6 +59,6 @@ export default function SearchBooks() {
             );
           })}
       </List>
-    </motion.div>
+      </>
   );
 }

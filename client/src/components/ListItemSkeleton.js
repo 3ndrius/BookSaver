@@ -41,8 +41,8 @@ const Authors = styled.ul`
   }
 `;
 const Wrap = styled.div`
-  align-self: flex-end;
-  max-width: 300px;
+align-self: flex-end;
+max-width: 300px;
   width: 100%;
   display: flex;
   justify-content: space-between;

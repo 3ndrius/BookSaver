@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { Button } from "../components/Button";
 import Skeleton from "react-loading-skeleton";
 import { motion } from "framer-motion";
+import ListItemSkeleton from "../components/ListItemSkeleton"
 
 const Item = styled.li`
   padding: 5px;
@@ -74,7 +75,7 @@ export default function SavedBooks() {
 
   return (
     <motion.div
-      initial={{ x: "-10%", opacity: 0 }}
+      initial={{ x: "-5%", opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: "30%", opacity: 0 }}
       transition={{ ease: "easeOut", duration: 1.5 }}
@@ -143,7 +144,7 @@ export default function SavedBooks() {
             );
           })
         ) : (
-          <p>No books</p>
+          <ListItemSkeleton />
         )}
       </List>
     </motion.div>

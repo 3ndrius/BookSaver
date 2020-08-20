@@ -40,6 +40,9 @@ const GlobalStyle = createGlobalStyle`
   p{
     color: ${(props) => (props.dark ? ({theme}) => theme.white100T : ({theme}) => theme.dark300)};
   }
+  li{
+    color: ${(props) => (props.dark ? ({theme}) => theme.white100 : ({theme}) => theme.dark200)};
+  }
 
   @media (max-width: 480px) {
     html{
