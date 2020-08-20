@@ -42,7 +42,7 @@ export default function Header(props) {
     <HeaderContainer dark={props.darkMode}>
       <Container>
         <NavBar>
-          <Logo>Book Diary</Logo>
+          <Link  to={"/"}><Logo>Books Diary</Logo></Link>
           <Nav>
             <Item>
               <Link  to={"/"}>Search</Link>
