@@ -14,10 +14,10 @@ export const apiGetBooks = async (search) => {
     const response = await request.json();
     return response;
   } catch (e) {
-    toast.error("Server Error occurred!", {
+    toast.error("Server Error occurred! " + e, {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
-    console.log("Error faild to get books", e);
+    console.log("Error Cannot get books !!", e);
   }
 };
 
@@ -64,7 +64,7 @@ export const apiDeleteBook = async (id) => {
       method: "DELETE",
     });
     const response = await request.json();
-    toast.success("Successfully saved book !!", {
+    toast.info("Successfully deleted book !!", {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
     return response;
@@ -73,14 +73,13 @@ export const apiDeleteBook = async (id) => {
   }
 };
 
-
 // export const api = async () => {
 //   try {
 //     const request  = await fetch(url, {
 //       method: options.metod,
 //     })
 //   } catch (e) {
-  
+
 //   }
 
 // }

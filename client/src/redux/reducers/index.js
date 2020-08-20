@@ -40,6 +40,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         errors: { msg: action.payload, status: true },
+        isloading: false
       };
 
     case SAVE_BOOK_ASYNC:
@@ -80,6 +81,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         savedBooks: sbooks,
+        isloading:false
       };
     case DELETE_BOOK_ERROR:
       return {

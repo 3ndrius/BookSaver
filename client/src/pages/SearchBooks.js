@@ -6,7 +6,7 @@ import { List } from "../components/List";
 import ListItem from "../components/ListItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooksRequest } from "../redux/actions";
-
+import  ListItemSkeleton from "../components/ListItemSkeleton"
 const Form = styled.form`
   width: 100%;
   height: 100px;
@@ -37,14 +37,14 @@ export default function SearchBooks() {
         </Button>
       </Form>
       <List>
-        {!state.isloading ? (
+        { state.isloading ? <ListItemSkeleton /> :
           state.books &&
           state.books.map((book, index) => {
-            return <ListItem key={book.id} book={book.volumeInfo} />;
+            return <ListItem key={book.id} book={book.volumeInfo} isloading={state.isloading} />;
           })
-        ) : (
-          <p>Test</p>
-        )}
+
+          
+        }
       </List>
     </>
   );

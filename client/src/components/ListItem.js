@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "./Button";
 import { useDispatch } from "react-redux";
 import { saveBookRequest } from "../redux/actions";
-
+import Skeleton from "react-loading-skeleton";
 import "react-toastify/dist/ReactToastify.css";
 const Item = styled.li`
   padding: 5px;
@@ -61,15 +61,15 @@ const Wrap = styled.div`
 export default function ListItem(props) {
   const { title, description, authors, imageLinks, infoLink } = props.book;
   const dispatch = useDispatch();
-
+  const isloading = props.isloading;
   const handleSave = (book) => {
     dispatch(saveBookRequest(book));
   };
-
   return (
+    title ? 
     <Item>
       <ImageWrapper>
-        <Title>{title}</Title>
+        <Title>{isloading ? <Skeleton count={2} /> : title}</Title>
         <Description>{description}</Description>
         <Authors>
           {" "}
@@ -98,6 +98,6 @@ export default function ListItem(props) {
           </a>
         </Wrap>
       </ImageWrapper>
-    </Item>
+    </Item> : <p>No books</p> 
   );
 }

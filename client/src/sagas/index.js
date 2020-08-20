@@ -26,8 +26,6 @@ function* watchGetBooks() {
 }
 
 //################################
-
-
 function* sagaSaveBooks(action) {
   const savedBook = yield call(apiSaveBook, action.payload);
   if (savedBook) {
@@ -36,15 +34,12 @@ function* sagaSaveBooks(action) {
     yield put(saveBookError("Error else eroor!!!"));
   }
 }
-
+// saga watcher
 function* watchSaveBook() {
   yield takeEvery("SAVE_BOOK_USER_REQUEST", sagaSaveBooks);
 }
 
-
-
 //###########
-
 function* sagaShowBooks() {
   const showedBook = yield call(apiShowBooks);
   if (showedBook) {
@@ -54,12 +49,9 @@ function* sagaShowBooks() {
   }
 }
 // watcher saga
-
 function* watchShowBooks() {
   yield takeEvery("SHOW_BOOKS_USER_REQUEST", sagaShowBooks);
 }
-
-
 
 //################3
 function* sagaDeleteBook(action) {
@@ -74,8 +66,6 @@ function* sagaDeleteBook(action) {
 function* watchDeleteBook() {
   yield takeEvery("DELETE_BOOK_USER_REQUEST", sagaDeleteBook);
 }
-
-
 
 export default function* rootSaga() {
   yield all([

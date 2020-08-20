@@ -34,7 +34,6 @@ bookController.post("/", async (req, res) => {
 bookController.post("/search", async (req, res) => {
   try {
     let search = req.body.search.replace(/\s/g, "+");
-    console.log("Request", req.body.search);
     let bookData = await axios.get(
       `https://www.googleapis.com/books/v1/volumes?q=${search}`
     );

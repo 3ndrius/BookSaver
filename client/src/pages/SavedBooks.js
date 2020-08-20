@@ -63,64 +63,62 @@ const Wrap = styled.div`
 
 export default function SavedBooks() {
   const dispatch = useDispatch();
-  const sdispatch = useDispatch();
-
   const state = useSelector((state) => state);
-  console.log("state", state.savedBooks);
-  const [isloading, setLoad] = React.useState(true);
-
+console.log(state.isloading)
   const handleDelete = (id) => {
-    sdispatch(deleteBookRequest(id));
+    dispatch(deleteBookRequest(id));
   };
 
-  setTimeout(() => {
-    setLoad(false);
-  }, 2000);
   React.useEffect(() => {
     dispatch(showBookRequest());
-  }, [dispatch, isloading, sdispatch]);
+  }, []);
+
   return (
     <List>
-      {state && state.savedBooks ? (
+      {state && state.savedBooks && state.savedBooks.length != 0 ?
         state.savedBooks.map((book) => {
           return (
             <Item key={book._id}>
               <ImageWrapper>
-                <Title>{book.title}</Title>
+                <Title>{state.isloading ? <Skeleton count={2} />  : book.title}</Title>
+               { state.isloading ? <Skeleton count={6} /> :
                 <Description>
                   {book.description &&
                     book.description.substring(0, 1200) + " ..."}
-                </Description>
+                </Description> }
                 <Authors>
+                { state.isloading ? <Skeleton height={40} width={360} /> :
+                <>
                   <span>Authors: </span>
                   {book.authors?.map((author, index) => (
                     <li key={index}> {author} </li>
                   ))}
+                  </>
+        }
                 </Authors>
-                <Image src={book.imageLinks?.smallThumbnail} />
+
+                {state.isloading ? <Skeleton width={200} height={250} /> :<Image src={book.imageLinks?.smallThumbnail} />}
 
                 <Wrap>
-                  <a>
+                 {state.isloading ? <Skeleton width={130} height={45} /> : <a>
                     <Button target="_blank" large>
                       View book
                     </Button>
-                  </a>
-                  <Button
+                  </a>}
+                  {state.isloading ? <Skeleton width={130} height={45} /> : <Button
                     target="_blank"
                     primary
                     large
                     onClick={() => handleDelete(book._id)}
                   >
                     Delete book
-                  </Button>
+                  </Button> }
                 </Wrap>
               </ImageWrapper>
             </Item>
           );
-        })
-      ) : (
-        <p>No books</p>
-      )}
+        }) : <p>No books</p>
+      }
     </List>
   );
 }
