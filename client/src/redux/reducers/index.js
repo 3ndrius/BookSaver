@@ -72,7 +72,6 @@ const rootReducer = (state = initialState, action) => {
     case DELETE_BOOK_USER_REQUEST:
       return {
         ...state,
-        isloading: true,
       };
     case DELETE_BOOK_ASYNC:
       const sbooks = state.savedBooks.filter(
@@ -81,7 +80,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         savedBooks: sbooks,
-        isloading:false
       };
     case DELETE_BOOK_ERROR:
       return {

@@ -9,5 +9,7 @@ export const Button = styled.button`
   font-size: 1em;
   border: 2px solid ${({theme}) => theme.dark300};
   border-radius: 1px;
-  cursor: pointer;
+  &:hover{
+    cursor:pointer;
+  }
 `;
