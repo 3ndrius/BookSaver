@@ -1,19 +1,39 @@
 # BOOKS SAVER
-- description
+This application allows user to search books from Google API.
+User has the ability to view the book on Google or save the book in database to view it later.
 
 ## APP_GOAL
+The goal is to build with docker and use mern-stack to build app with react and node epress and mongoose on the server side. 
 
+## FEATURES
+- search books
+- save book
+- display saved book
+- delete saved book
+- display book on google site
+- dark-mode-toggle
 
-## FRONT STACK
+![BooksDiary]()
+
+## FRONT DEP
+- framer-motion
+- react
+- react-loading-skeleton
+- redux
+- redux-saga
+- react-lazy-loading
+- styled-components
+- and ...
 
 ## BACK STACK
+- nodejs
+- express
+- mongodb
 
-## HOW TO USE
+# HOW TO USE
 
 pre-Requirements:
 - docker on your system
-- create .env file in root directory (server)
-- copy from .env-example
 
 Run the app using :
 
@@ -41,8 +61,4 @@ To check the status :
 - open file __test__
 - test api call
 
-
-
-
-
-
+ubuntu18
