@@ -40,6 +40,12 @@ const GlobalStyle = createGlobalStyle`
   p{
     color: ${(props) => (props.dark ? ({theme}) => theme.white100T : ({theme}) => theme.dark300)};
   }
-`;
 
+  @media (max-width: 480px) {
+    html{
+      font-size: 45%;
+    }
+  }
+  `;
+  
 export default GlobalStyle;
