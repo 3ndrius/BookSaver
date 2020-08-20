@@ -5,7 +5,7 @@ import { List } from "../components/List";
 import styled from "styled-components";
 import { Button } from "../components/Button";
 import Skeleton from "react-loading-skeleton";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const Item = styled.li`
   padding: 5px;
@@ -70,60 +70,82 @@ export default function SavedBooks() {
 
   React.useEffect(() => {
     dispatch(showBookRequest());
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
-    <motion.div  initial={{ x: '-10%', opacity: 0 }}
-       animate={{ x: 0, opacity: 1 }}
-      exit={{ x: '30%', opacity: 0 }}
-      transition={{ ease: "easeOut", duration:1.5 }}>
-    <List>
-      {state && state.savedBooks && state.savedBooks.length !== 0 ?
-        state.savedBooks.map((book) => {
-          return (
-            <Item key={book._id}>
-              <ImageWrapper>
-                <Title>{state.isloading ? <Skeleton count={2} />  : book.title}</Title>
-               { state.isloading ? <Skeleton count={6} /> :
-                <Description>
-                  {book.description &&
-                    book.description.substring(0, 1200) + " ..."}
-                </Description> }
-                <Authors>
-                { state.isloading ? <Skeleton height={40} width={360} /> :
-                <>
-                  <span>Authors: </span>
-                  {book.authors?.map((author, index) => (
-                    <li key={index}> {author} </li>
-                  ))}
-                  </>
-        }
-                </Authors>
+    <motion.div
+      initial={{ x: "-10%", opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: "30%", opacity: 0 }}
+      transition={{ ease: "easeOut", duration: 1.5 }}
+    >
+      <List>
+        {state && state.savedBooks && state.savedBooks.length !== 0 ? (
+          state.savedBooks.map((book) => {
+            return (
+              <Item key={book._id}>
+                <ImageWrapper>
+                  <Title>
+                    {state.isloading ? <Skeleton count={2} /> : book.title}
+                  </Title>
+                  {state.isloading ? (
+                    <Skeleton count={6} />
+                  ) : (
+                    <Description>
+                      {book.description &&
+                        book.description.substring(0, 1200) + " ..."}
+                    </Description>
+                  )}
+                  <Authors>
+                    {state.isloading ? (
+                      <Skeleton height={40} width={360} />
+                    ) : (
+                      <>
+                        <span>Authors: </span>
+                        {book.authors?.map((author, index) => (
+                          <li key={index}> {author} </li>
+                        ))}
+                      </>
+                    )}
+                  </Authors>
 
-                {state.isloading ? <Skeleton width={200} height={250} /> :<Image src={book.imageLinks?.smallThumbnail} />}
+                  {state.isloading ? (
+                    <Skeleton width={200} height={250} />
+                  ) : (
+                    <Image src={book.imageLinks?.smallThumbnail} />
+                  )}
 
-                <Wrap>
-                 {state.isloading ? <Skeleton width={130} height={45} /> : 
-                 <a href={book.infoLink} rel="noopener noreferrer" >
-                    <Button target="_blank" large>
-                      View book
-                    </Button>
-                  </a>}
-                  {state.isloading ? <Skeleton width={130} height={45} /> : <Button
-                    target="_blank"
-                    primary
-                    large
-                    onClick={() => handleDelete(book._id)}
-                  >
-                    Delete book
-                  </Button> }
-                </Wrap>
-              </ImageWrapper>
-            </Item>
-          );
-        }) : <p>No books</p>
-      }
-    </List>
+                  <Wrap>
+                    {state.isloading ? (
+                      <Skeleton width={130} height={45} />
+                    ) : (
+                      <a href={book.infoLink} rel="noopener noreferrer">
+                        <Button target="_blank" large>
+                          View book
+                        </Button>
+                      </a>
+                    )}
+                    {state.isloading ? (
+                      <Skeleton width={130} height={45} />
+                    ) : (
+                      <Button
+                        target="_blank"
+                        primary
+                        large
+                        onClick={() => handleDelete(book._id)}
+                      >
+                        Delete book
+                      </Button>
+                    )}
+                  </Wrap>
+                </ImageWrapper>
+              </Item>
+            );
+          })
+        ) : (
+          <p>No books</p>
+        )}
+      </List>
     </motion.div>
   );
 }

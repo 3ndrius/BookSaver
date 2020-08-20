@@ -6,8 +6,8 @@ import { List } from "../components/List";
 import ListItem from "../components/ListItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooksRequest } from "../redux/actions";
-import  ListItemSkeleton from "../components/ListItemSkeleton"
-import { motion } from "framer-motion"
+import ListItemSkeleton from "../components/ListItemSkeleton";
+import { motion } from "framer-motion";
 
 const Form = styled.form`
   width: 100%;
@@ -31,11 +31,12 @@ export default function SearchBooks() {
     setSearch("");
   };
   return (
-    <motion.div  initial={{ x: '10%', opacity: 0 }}
-    animate={{ x: 0, opacity: 1 }}
-    exit={{ x: '30%', opacity: 1 }}
-    transition={{ ease: "easeOut", duration:1 }}>
-      
+    <motion.div
+      initial={{ x: "10%", opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: "30%", opacity: 1 }}
+      transition={{ ease: "easeOut", duration: 1 }}
+    >
       <Form onSubmit={handleSearch}>
         <Input onChange={handleInputVal} value={search} />
         <Button large primary>
@@ -43,17 +44,18 @@ export default function SearchBooks() {
         </Button>
       </Form>
       <List>
-        { 
-          state.books &&
+        {state.books &&
           state.books.map((book, index) => {
-            return(
-            state.isloading ? <ListItemSkeleton key={index}/> :
-             <ListItem key={book.id} book={book.volumeInfo} isloading={state.isloading} /> 
-            )
-          })
-
-          
-        }
+            return state.isloading ? (
+              <ListItemSkeleton key={index} />
+            ) : (
+              <ListItem
+                key={book.id}
+                book={book.volumeInfo}
+                isloading={state.isloading}
+              />
+            );
+          })}
       </List>
     </motion.div>
   );
