@@ -23,7 +23,6 @@ bookController.post("/", async (req, res) => {
       success: true,
       book,
     });
-    console.log(book)
   } catch (e) {
     res.staus(500).send({
       success: false,

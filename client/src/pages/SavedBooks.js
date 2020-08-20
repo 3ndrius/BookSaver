@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { Button } from "../components/Button";
 import Skeleton from "react-loading-skeleton";
 import { motion } from "framer-motion";
-import ListItemSkeleton from "../components/ListItemSkeleton"
+import ListItemSkeleton from "../components/ListItemSkeleton";
 
 const Item = styled.li`
   padding: 5px;
@@ -74,16 +74,16 @@ export default function SavedBooks() {
   }, [dispatch]);
 
   return (
-    <motion.div
-      initial={{ x: "-5%", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: "30%", opacity: 0 }}
-      transition={{ ease: "easeOut", duration: 1.5 }}
-    >
-      <List>
-        {state && state.savedBooks && state.savedBooks.length !== 0 ? (
-          state.savedBooks.map((book) => {
-            return (
+    <List>
+      {state && state.savedBooks && state.savedBooks.length !== 0 ? (
+        state.savedBooks.map((book) => {
+          return (
+            <motion.div
+              initial={{ y: "-5%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ x: "30%", opacity: 0 }}
+              transition={{ ease: "easeOut", duration: 1.5 }}
+            >
               <Item key={book._id}>
                 <ImageWrapper>
                   <Title>
@@ -141,12 +141,12 @@ export default function SavedBooks() {
                   </Wrap>
                 </ImageWrapper>
               </Item>
-            );
-          })
-        ) : (
-          <ListItemSkeleton />
-        )}
-      </List>
-    </motion.div>
+            </motion.div>
+          );
+        })
+      ) : (
+        <ListItemSkeleton />
+      )}
+    </List>
   );
 }

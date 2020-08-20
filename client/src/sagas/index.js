@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, delay } from "redux-saga/effects";
+import { call, put, takeEvery, all } from "redux-saga/effects";
 import {
   getBooksAsync,
   getBooksError,
@@ -42,7 +42,6 @@ function* watchSaveBook() {
 //###########
 function* sagaShowBooks() {
   const showedBook = yield call(apiShowBooks);
-  yield delay(2000);
   if (showedBook) {
     yield put(showBookAsync(showedBook));
   } else {
