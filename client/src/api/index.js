@@ -73,13 +73,4 @@ export const apiDeleteBook = async (id) => {
   }
 };
 
-// export const api = async () => {
-//   try {
-//     const request  = await fetch(url, {
-//       method: options.metod,
-//     })
-//   } catch (e) {
 
-//   }
-
-// }

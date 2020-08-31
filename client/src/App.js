@@ -11,7 +11,9 @@ const SavedBooks = (lazy(() => (import('./pages/SavedBooks'))));
 const SearchBooks = (lazy(() => (import('./pages/SearchBooks'))));
 
 const LoadingMessage = () => (
-  "I'm loading..."
+  <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+      <p>Loading ...</p>
+  </div>
 )
 const App = () => {
   const [darkMode, setDarkMode] = React.useState(false)
