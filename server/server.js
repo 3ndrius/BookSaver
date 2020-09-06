@@ -4,10 +4,12 @@ const path = require("path");
 const cors = require("cors");
 const logger = require("morgan");
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 // const cookieParser = require('cookie-parser');
 
 // Configuration
-const PORT = 8080;
+
 const CLIENT_BUILD_PATH = path.join(__dirname, "../client/build");
 require("./config/database");
 
@@ -27,6 +29,6 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
 });
 
-app.listen(PORT, function () {
-  console.log(`%%%%%%%====== Server Listening on ${PORT} =======%%%%%%%%`);
+app.listen(process.env.PORT, function () {
+  console.log(`%%%%%%%====== Server Listening on ${process.env.PORT} =======%%%%%%%%`);
 });

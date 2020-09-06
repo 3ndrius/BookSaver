@@ -2,6 +2,8 @@
 This application allows user to search books from Google API.
 User has the ability to view the book on Google or save the book in database to view it later.
 
+## [demo](https://infinite-badlands-91442.herokuapp.com/)
+
 ## APP_GOAL
 The goal is to build with docker and use mern-stack to build app with react and node epress and mongoose on the server side. 
 
