@@ -2,10 +2,10 @@
 This application allows user to search books from Google API.
 User has the ability to view the book on Google or save the book in database to view it later.
 
-## [demo](https://infinite-badlands-91442.herokuapp.com/)
+## [demo](https://infinite-badlands-91442.herokuapp.com)
 
 ## APP_GOAL
-The goal is to build with docker and use mern-stack to create app with react, node, epress and mongoose on the server side. 
+The goal is to build with docker and use mern-stack to build app with react and node epress and mongoose on the server side. 
 
 ## FEATURES
 - search books
@@ -15,7 +15,7 @@ The goal is to build with docker and use mern-stack to create app with react, no
 - display book on google site
 - dark-mode-toggle
 
-![prev](https://github.com/3ndrius/BookSaver/blob/master/client/public/prev.png?raw=true)
+![BooksDiary]()
 
 ## FRONT DEP
 - framer-motion
@@ -36,7 +36,6 @@ The goal is to build with docker and use mern-stack to create app with react, no
 
 pre-Requirements:
 - docker on your system
-- create .env file (see env-example)
 
 Run the app using :
 
