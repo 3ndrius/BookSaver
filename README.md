@@ -15,7 +15,7 @@ The goal is to build with docker and use mern-stack to build app with react and 
 - display book on google site
 - dark-mode-toggle
 
-![BooksDiary]()
+![prev](https://github.com/3ndrius/BookSaver/blob/master/client/public/prev.png?raw=true)
 
 ## FRONT DEP
 - framer-motion
