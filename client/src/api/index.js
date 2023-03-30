@@ -12,6 +12,7 @@ export const apiGetBooks = async (search) => {
       },
     });
     const response = await request.json();
+    console.log(response);
     return response;
   } catch (e) {
     toast.error("Server Error occurred! " + e, {
@@ -23,7 +24,7 @@ export const apiGetBooks = async (search) => {
 
 export const apiSaveBook = async (book) => {
   try {
-    const request = await fetch(`http://localhost:8080/books/`, {
+    const request = await fetch(`http://localhost:8080/books`, {
       method: "POST",
       body: JSON.stringify({
         book: book,
@@ -38,11 +39,11 @@ export const apiSaveBook = async (book) => {
     });
     return response;
   } catch (e) {
-    console.log("Error faild to get books", e);
 
     toast.error("Server Error occurred!", {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
+    throw (e);
   }
 };
 
@@ -50,12 +51,13 @@ export const apiShowBooks = async () => {
   try {
     const request = await fetch(`http://localhost:8080/books`);
     const response = await request.json();
+    // console.log(response)
     return response;
   } catch (e) {
-    console.log("Server error" + e);
     toast.error("Server Error occurred!", {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
+    throw (e);
   }
 };
 export const apiDeleteBook = async (id) => {
@@ -69,7 +71,11 @@ export const apiDeleteBook = async (id) => {
     });
     return response;
   } catch (e) {
+    toast.error("Deleting book failed!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
     console.log("Server error: " + e);
+    throw (e);
   }
 };
 

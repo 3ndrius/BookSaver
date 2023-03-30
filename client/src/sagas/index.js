@@ -27,11 +27,16 @@ function* watchGetBooks() {
 
 //################################
 function* sagaSaveBooks(action) {
-  const savedBook = yield call(apiSaveBook, action.payload);
-  if (savedBook) {
-    yield put(saveBookAsync(savedBook));
-  } else {
-    yield put(saveBookError("Error else eroor!!!"));
+  try {
+
+    const savedBook = yield call(apiSaveBook, action.payload);
+    if (savedBook) {
+      yield put(saveBookAsync(savedBook));
+    } else {
+      yield put(saveBookError("Error else eroor!!!"));
+    }
+  } catch (e) {
+    return;
   }
 }
 // saga watcher
@@ -41,11 +46,15 @@ function* watchSaveBook() {
 
 //###########
 function* sagaShowBooks() {
-  const showedBook = yield call(apiShowBooks);
-  if (showedBook) {
-    yield put(showBookAsync(showedBook));
-  } else {
-    yield put(showBookError("Server error sga!!"));
+  try {
+    const showedBook = yield call(apiShowBooks);
+    if (showedBook) {
+      yield put(showBookAsync(showedBook));
+    } else {
+      yield put(showBookError("Server error sga!!"));
+    }
+  } catch (error) {
+    return;
   }
 }
 // watcher saga
