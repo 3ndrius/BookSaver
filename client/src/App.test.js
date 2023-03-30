@@ -68,3 +68,11 @@ describe('books route', () => {
 
   });
 })
+
+test('api search books', async () => {
+  customRender(<BrowserRouter><SearchBooks /></BrowserRouter>);
+  const input = screen.getByRole('textbox');
+  expect(input).toBeInTheDocument();
+  fireEvent.change(input, { target: { value: 'Brain' } })
+  expect(input).toHaveValue("Brain");
+})

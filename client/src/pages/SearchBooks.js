@@ -39,7 +39,7 @@ export default function SearchBooks() {
         transition={{ ease: "easeOut", duration: 1 }}
       >
         <Form onSubmit={handleSearch}>
-          <Input onChange={handleInputVal} value={search} />
+          <Input onChange={handleInputVal} value={search} role="textbox" />
           <Button large primary>
             Search books
           </Button>
