@@ -76,3 +76,13 @@ test('api search books', async () => {
   fireEvent.change(input, { target: { value: 'Brain' } })
   expect(input).toHaveValue("Brain");
 })
+
+// test('search books: success', async () => {
+//   customRender(<BrowserRouter><SearchBooks /></BrowserRouter>)
+//   const searchBtn = screen.getByRole('button');
+//   expect(searchBtn).toBeInTheDocument();
+//   fireEvent.click(searchBtn)
+//   const items = getAllByRole("listitem");
+//   expect(items).not.toBeInTheDocument();
+//   // expect(items.length).toBe(1)
+// })

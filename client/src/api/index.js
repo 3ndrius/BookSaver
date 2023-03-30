@@ -12,13 +12,12 @@ export const apiGetBooks = async (search) => {
       },
     });
     const response = await request.json();
-    console.log(response);
     return response;
   } catch (e) {
     toast.error("Server Error occurred! " + e, {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
-    console.log("Error Cannot get books !!", e);
+    throw Error("Books not found or sth went wrong!")
   }
 };
 
